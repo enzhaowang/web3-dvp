@@ -1,0 +1,42 @@
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    environment:
+      - PORT=8080
+      - MONGO_URI=${RPC_URL}
+      - RPC_URL=${RPC_URL}
+      - CHAIN_ID=${CHAIN_ID}
+      - BROKER_ADDRESS=${BROKER_ADDRESS}
+      - USDX_ADDRESS=${USDX_ADDRESS}
+      - MYSTOCK_ADDRESS=${MYSTOCK_ADDRESS}
+      - PRICE_USDX_PER_STOCK=${PRICE_USDX_PER_STOCK}
+      - SELLER_ADDRESS=${SELLER_ADDRESS}
+      - EXPLORER_TX_BASE=${EXPLORER_TX_BASE}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    environment:
+      - VITE_BACKEND_URL=http://localhost:8080
+      - VITE_CHAIN_ID=${CHAIN_ID}
+      - VITE_USDX_ADDRESS=${USDX_ADDRESS}
+      - VITE_MYSTOCK_ADDRESS=${MYSTOCK_ADDRESS}
+      - VITE_BROKER_ADDRESS=${BROKER_ADDRESS}
+      - VITE_EXPLORER_TX_BASE=${EXPLORER_TX_BASE}
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
