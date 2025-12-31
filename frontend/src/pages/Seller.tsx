@@ -93,7 +93,7 @@ export default function Seller() {
                     Reject
                   </button>
                   <button onClick={() => accept(d)} disabled={!!loading}>
-                    Accept (MyStock -> Broker)
+                    Accept (MyStock -{'>'} Broker)
                   </button>
                 </td>
               </tr>

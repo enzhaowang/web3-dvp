@@ -135,10 +135,10 @@ export default function Broker() {
         <thead>
           <tr>
             <th>Deal</th>
-            <th>Buyer->Broker</th>
-            <th>Seller->Broker</th>
-            <th>Broker->Buyer</th>
-            <th>Broker->Seller</th>
+            <th>Buyer-{'>'}Broker</th>
+            <th>Seller-{'>'}Broker</th>
+            <th>Broker-{'>'}Buyer</th>
+            <th>Broker-{'>'}Seller</th>
             <th>Status</th>
           </tr>
         </thead>

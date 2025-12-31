@@ -82,7 +82,7 @@ export default function Buyer() {
           <input value={qty} onChange={(e) => setQty(e.target.value)} />
         </div>
         <button onClick={submit} disabled={!address || !!loading}>
-          Submit Buy (USDX -> Broker)
+          Submit Buy (USDX -{'>'} Broker)
         </button>
         {loading && <div style={{ marginTop: 8 }}>⏳ {loading}</div>}
       </div>
